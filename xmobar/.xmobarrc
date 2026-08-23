@@ -1,0 +1,44 @@
+Config {
+     font            = "LiberationMono 12"
+   , bgColor         = "#000000"
+   , fgColor         = "#ffffff"
+   , position        = TopSize C 100 25
+   , border          = BottomB
+   , borderColor     = "#ffffff"
+   , borderWidth     = 1
+   , sepChar         = "%"
+   , alignSep        = "}{"
+   , template        = " %XMonadLog% }{ %cpu% | %memory% | %battery% | %date% "
+   , commands        =
+        [ Run XMonadLog
+        , Run Battery
+            [ "-t", "Battery: <acstatus>"
+            , "-H", "90"
+	    , "-L", "20"
+	    , "-h", "#ff2626"
+	    , "-n", "#ffffff"
+	    , "-l", "#37ff58"
+            , "--"
+            , "-o", "<left>% (<timeleft>)"
+            , "-O", "<fc=#ffffff>Charging</fc> <left>%"
+            , "-i", "<fc=#37ff58>Full</fc>"
+            ] 60
+        , Run Memory
+	    [ "-t", "RAM: <usedratio>%"
+	    , "-H", "75"	
+	    , "-L", "10"
+	    , "-h", "#ff2626"
+	    , "-n", "#ffffff"
+	    , "-l", "#37ff58"
+	    ] 10
+	, Run Cpu
+	    [ "-t", "CPU: <total>%"
+	    , "-H", "75"
+	    , "-L", "10"
+	    , "-h", "#ff2626"
+	    , "-n", "#ffffff"
+	    , "-l", "#37ff58"
+	    ] 10
+        , Run Date "<fc=#ffffff> %a %b %_d %H:%M:%S</fc>" "date" 10
+            ]
+   }
