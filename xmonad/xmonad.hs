@@ -45,7 +45,7 @@ myKeys =
        , ("<F6>", spawn "wpctl set-mute   @DEFAULT_SINK@ toggle")
        -- Quit/Recompile
        , ("M-S-r", spawn "xmonad --recompile && xmonad --restart")
-       , ("M-S-q", io exitSuccess
+       , ("M-S-q", io exitSuccess)
        ]
 myConf =
     def
