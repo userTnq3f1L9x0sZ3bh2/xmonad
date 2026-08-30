@@ -25,7 +25,7 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 myManageHook :: ManageHook
 myManageHook = composeAll
-       [ className =? "st" --> doShift "1"
+       [ className =? "alacritty" --> doShift "1"
        , className =? "firefox"   --> doShift "2"
        , className =? "librewolf" --> doShift "3"
        , className =? "vmware"    --> doShift "5"
