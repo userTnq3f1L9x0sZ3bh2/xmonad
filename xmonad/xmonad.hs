@@ -25,7 +25,7 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 myManageHook :: ManageHook
 myManageHook = composeAll
-       [ className =? "alacritty" --> doShift "1"
+       [ className =? "st" --> doShift "1"
        , className =? "firefox"   --> doShift "2"
        , className =? "librewolf" --> doShift "3"
        , className =? "vmware"    --> doShift "5"
@@ -35,7 +35,7 @@ myManageHook = composeAll
 myKeys =
        -- Spawn Apps
        [ ("M-<Return>", spawn myTerminal)
-       , ("M-d",        spawn "rofi -show drun -theme ~/.config/rofi/config.rasi")
+       , ("M-d",        spawn "dmenu_run")
        , ("M-S-x",      spawn "xsecurelock")
        -- Kill Windows
        , ("M-q",        kill)
@@ -65,9 +65,11 @@ myXmobarPP =
        { ppSep             = " | "
        , ppTitleSanitize   = xmobarStrip
        , ppCurrent         = wrap "[" "]"
+       , ppVisible         = wrap " " ""
        , ppHidden          = white . wrap " " ""
+       , ppHiddenNoWindows = dimWhite . wrap " " ""
        , ppUrgent          = red . wrap (yellow "!") (yellow "!")
-       , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
+       , ppOrder           = \[ws, l, _, wins] -> [ws, l]
        , ppExtras          = [logTitles formatFocused formatUnfocused]
        }
     where
@@ -75,7 +77,7 @@ myXmobarPP =
        formatUnfocused = wrap (dimWhite "[") (dimWhite "]") . dimWhite . ppWindow
 
        ppWindow :: String -> String
-       ppWindow = xmobarRaw . (\w -> if null w then "N/A" else w) . shorten 30
+       ppWindow = xmobarRaw . (\w -> if null w then "N/A" else w) . shorten 15
 
        red, yellow, white, dimWhite :: String -> String
        red      = xmobarColor "#e92929" ""
