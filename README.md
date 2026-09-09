@@ -1,2 +1,4 @@
 # xmonad
-My XMonad configuration (very unfinished)
+Basic XMonad configuration (Unfinished)
+
+Missing: LayoutHook, Keybinds
